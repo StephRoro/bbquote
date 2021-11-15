@@ -25,9 +25,6 @@ jobs:
   #   (the `strategy` key should be at the same level as the `steps` key)
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.6, 3.7]
     steps:
     - uses: actions/checkout@v2
     - name: Say hello
@@ -44,6 +41,9 @@ jobs:
     - name: Install package and test
       run: |
         make install test clean
+    strategy:
+      matrix:
+        python-version: [3.8]
   # # 🤖 CD paragraph
   # #
   # # uncomment the following lines to activate CD to Heroku
@@ -52,6 +52,7 @@ jobs:
   # # - keep in mind you also need to configure Heroku HEROKU_API_KEY and HEROKU_EMAIL in GitHub secrets
   # # - and replace REPLACE_WITH_YOUR_HEROKU_APP_NAME in this file with the name of your Heroku app
   deploy_heroku:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
