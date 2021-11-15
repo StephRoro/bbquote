@@ -1,7 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from bbquote.bbquote.lib import get_quote
+from bbquote.lib import get_quote
 
-get_quote()
+def sum_a_b():
+	return 2+3
 
+
+print(get_quote())
+
+
+if __name__ == "__main__":
+	print(sum_a_b())
